@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Cổng Thông Tin</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        #main {
+            transition: opacity 0.3s;
+        }
+        .modal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .modal {
+            background: white;
+            padding: 20px;
+            border-radius: 8px; 
+            min-width: 300px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sách Lớp</title>
+    <meta name="viewport" content="width=1100, initial-scale=1.0">
+    <script src="../js/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        .container {
+            width: 1000px;
+            margin: 40px auto 0 auto;
+        }
+        .table-box {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding: 0 0 18px 0;
+            margin: 0 auto 32px auto;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+        }
+        th, td {
+            border: 1px solid #bbb;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        th {
+            background: #223a57;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        .stt-col {
+            background: #223a57;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+            width: 40px;
+        }
+        .back-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        .back-btn:before {
+            content: "←";
+            margin-right: 8px;
+        }
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .breadcrumb-item {
+            color: #2196F3;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #888;
+        }
+        .breadcrumb-item:last-child {
+            color: #555;
+            font-weight: bold;
+        }
+        .breadcrumb-item:hover:not(:last-child) {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <span class="breadcrumb-item" onclick="goto('dieuhuong')">Trang chủ</span>
+            <span class="breadcrumb-item" onclick="goto('cvht_dashboard')">Bảng điều khiển CVHT</span>
+            <span class="breadcrumb-item">Danh sách lớp</span>
+        </div>
+        
+        <button class="back-btn" onclick="goto('cvht_dashboard')">Quay lại</button>
+        
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th class="stt-col">STT</th>
+                    <th>MSSV</th>
+                    <th>Họ và tên</th>
+                    <th>Lớp</th>
+                    <th>Tổng điểm</th>
+                </tr>
+                <tr>
+                    <td class="stt-col">1</td>
+                    <td>SV001</td>
+                    <td>Nguyễn Văn Bé</td>
+                    <td>Đ22HT1</td>
+                    <td>85</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">2</td>
+                    <td>SV002</td>
+                    <td>Trần Thị Bình</td>
+                    <td>Đ22HT1</td>
+                    <td>90</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">3</td>
+                    <td>SV003</td>
+                    <td>Phạm Minh Nam</td>
+                    <td>Đ22HT2</td>
+                    <td>78</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">4</td>
+                    <td>SV004</td>
+                    <td>Lê Thị Mai</td>
+                    <td>Đ22HT2</td>
+                    <td>82</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">5</td>
+                    <td>SV005</td>
+                    <td>Đỗ Trung Kiên</td>
+                    <td>Đ22HT3</td>
+                    <td>65</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">6</td>
+                    <td>SV006</td>
+                    <td>Vũ Hải Đăng</td>
+                    <td>Đ22HT3</td>
+                    <td>88</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">7</td>
+                    <td>SV007</td>
+                    <td>Ngô Nhật Minh</td>
+                    <td>Đ22HT4</td>
+                    <td>72</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">8</td>
+                    <td>SV008</td>
+                    <td>Trịnh Thanh Hùng</td>
+                    <td>Đ22HT4</td>
+                    <td>93</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">9</td>
+                    <td>SV009</td>
+                    <td>Phan Thị Yến</td>
+                    <td>Đ22HT5</td>
+                    <td>69</td>
+                </tr>
+                <tr>
+                    <td class="stt-col">10</td>
+                    <td>SV010</td>
+                    <td>Hoàng Văn Sơn</td>
+                    <td>Đ22HT5</td>
+                    <td>75</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

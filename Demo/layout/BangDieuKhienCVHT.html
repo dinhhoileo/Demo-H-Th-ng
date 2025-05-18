@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý điểm rèn luyện - Cố vấn học tập</title>
+    <meta name="viewport" content="width=900, initial-scale=1.0">
+    <script src="../js/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        .window-bar {
+            background: #ededed;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            border-bottom: 1px solid #ccc;
+        }
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+            display: inline-block;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .window-title {
+            margin-left: 12px;
+            color: #444;
+            font-size: 15px;
+            font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .container {
+            width: 900px;
+            margin: 0 auto;
+            padding-top: 10px;
+        }
+        .header {
+            background: #34495e;
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            padding: 18px 0 18px 0;
+            margin-bottom: 18px;
+        }
+        .table-box {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            padding: 18px 18px 0 18px;
+            margin-bottom: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+        }
+        th, td {
+            border: 1px solid #bbb;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        th {
+            background: #223a57;
+            color: #fff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        .action-box {
+            background: #fff;
+            border-radius: 8px;
+            border: 1.5px solid #f39c12;
+            padding: 24px 24px 18px 24px;
+            margin-bottom: 18px;
+        }
+        .action-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 18px;
+        }
+        .action-btn {
+            flex: 1;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 18px 0;
+            cursor: pointer;
+            color: #fff;
+        }
+        .btn-blue { background: #1da1f2; }
+        .btn-orange { background: #f39c12; }
+        .btn-green { background: #27ae60; }
+        .btn-purple { background: #8e44ad; }
+        .action-row:last-child {
+            margin-bottom: 0;
+        }
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .breadcrumb-item {
+            color: #2196F3;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #888;
+        }
+        .breadcrumb-item:last-child {
+            color: #555;
+            font-weight: bold;
+        }
+        .breadcrumb-item:hover:not(:last-child) {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <span class="breadcrumb-item" onclick="goto('dieuhuong')">Trang chủ</span>
+            <span class="breadcrumb-item">Bảng điều khiển CVHT</span>
+        </div>
+        <div class="header">QUẢN LÝ ĐIỂM RÈN LUYỆN - CỐ VẤN HỌC TẬP</div>
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th>STT</th>
+                    <th>MSSV</th>
+                    <th>Họ và tên</th>
+                    <th>Lớp</th>
+                    <th>Tổng điểm</th>
+                    <th>Tình trạng</th>
+                </tr>
+                <tr>
+                    <td>1</td><td>SV001</td><td>Nguyễn Văn ...</td><td>Đ22HT1</td><td>85</td><td>Đã chấm</td>
+                </tr>
+                <tr>
+                    <td>2</td><td>SV002</td><td>Trần Thị Bình</td><td>Đ22HT1</td><td>90</td><td>Đã chấm</td>
+                </tr>
+                <tr>
+                    <td>3</td><td>SV003</td><td>Phạm Minh ...</td><td>Đ22HT2</td><td>78</td><td>Chờ duyệt</td>
+                </tr>
+                <tr>
+                    <td>4</td><td>SV004</td><td>Lê Thị Mai</td><td>Đ22HT2</td><td>82</td><td>Đã chấm</td>
+                </tr>
+                <tr>
+                    <td>5</td><td>SV005</td><td>Đỗ Trung Kiên</td><td>Đ22HT3</td><td>65</td><td>Yêu cầu chấm lại</td>
+                </tr>
+                <tr>
+                    <td>6</td><td>SV006</td><td>Vũ Hải Đăng</td><td>Đ22HT3</td><td>88</td><td>Đã chấm</td>
+                </tr>
+                <tr>
+                    <td>7</td><td>SV007</td><td>Ngô Nhật ...</td><td>Đ22HT4</td><td>72</td><td>Chờ duyệt</td>
+                </tr>
+                <tr>
+                    <td>8</td><td>SV008</td><td>Trịnh Thanh ...</td><td>Đ22HT4</td><td>93</td><td>Đã chấm</td>
+                </tr>
+                <tr>
+                    <td>9</td><td>SV009</td><td>Phan Thị Yến</td><td>Đ22HT5</td><td>69</td><td>Yêu cầu chấm lại</td>
+                </tr>
+                <tr>
+                    <td>10</td><td>SV010</td><td>Hoàng Văn ...</td><td>Đ22HT5</td><td>75</td><td>Đã chấm</td>
+                </tr>
+            </table>
+        </div>
+        <div class="action-box">
+            <div class="action-row">
+                <button class="action-btn btn-blue" onclick="goto('danhsachlop')">Danh sách lớp</button>
+                <button class="action-btn btn-orange" onclick="showModal('Kiểm tra điểm thành công!')">Kiểm tra điểm</button>
+            </div>
+            <div class="action-row">
+                <button class="action-btn btn-green" onclick="showModal('Duyệt kết quả thành công!')">Duyệt kết quả</button>
+                <button class="action-btn btn-purple" onclick="showModal('Đã gửi kết quả cho CTSV!')">Gửi kết quả cho CTSV</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Tải danh sách sinh viên chờ CVHT đánh giá
+        function loadPendingStudents() {
+            const pendingList = getPendingEvaluations('cvht');
+            const tableBody = document.querySelector('table').tBodies[0];
+            
+            // Xóa các hàng cũ (trừ header)
+            while (tableBody.rows.length > 0) {
+                tableBody.deleteRow(0);
+            }
+            
+            if (pendingList.length > 0) {
+                // Thêm sinh viên vào bảng
+                pendingList.forEach((student, index) => {
+                    const row = tableBody.insertRow();
+                    
+                    // Tạo các ô
+                    const cellIndex = row.insertCell(0);
+                    const cellId = row.insertCell(1);
+                    const cellName = row.insertCell(2);
+                    const cellClass = row.insertCell(3);
+                    const cellScore = row.insertCell(4);
+                    const cellStatus = row.insertCell(5);
+                    
+                    // Điền dữ liệu vào các ô
+                    cellIndex.textContent = index + 1;
+                    cellId.textContent = student.studentId;
+                    cellName.textContent = 'Nguyễn Văn A';
+                    cellClass.textContent = 'Đ22HT1';
+                    
+                    // Tính tổng điểm (giả sử)
+                    let totalScore = 0;
+                    if (student.data.bcsEval) {
+                        totalScore = student.data.bcsEval.reduce((sum, val) => sum + parseInt(val || 0), 0);
+                    }
+                    cellScore.textContent = totalScore;
+                    cellStatus.textContent = 'Chờ duyệt';
+                    
+                    // Thêm sự kiện click vào hàng
+                    row.style.cursor = 'pointer';
+                    row.addEventListener('click', function() {
+                        // Lưu thông tin sinh viên được chọn
+                        localStorage.setItem('selectedStudent', JSON.stringify({
+                            mssv: student.studentId,
+                            name: 'Nguyễn Văn A',
+                            lop: 'Đ22HT1'
+                        }));
+                        
+                        // Chuyển đến trang đánh giá CVHT
+                        loadPage('PhieuDiemRenLuyenCVHT.html');
+                    });
+                });
+            }
+        }
+        
+        // Tải danh sách khi trang được nạp
+        document.addEventListener('DOMContentLoaded', loadPendingStudents);
+        
+        // Xử lý nút đăng xuất
+        document.querySelector('.action-btn.btn-blue').addEventListener('click', function() {
+            loadPage('DanhSachLop.html');
+        });
+    </script>
+</body>
+</html>

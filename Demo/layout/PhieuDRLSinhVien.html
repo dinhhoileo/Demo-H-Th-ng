@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phiếu đánh giá điểm rèn luyện</title>
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <script src="../js/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        .window-bar {
+            background: #ededed;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            border-bottom: 1px solid #ccc;
+        }
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+            display: inline-block;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .window-title {
+            margin-left: 12px;
+            color: #444;
+            font-size: 15px;
+            font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .menu-bar {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            margin-top: 4px;
+            margin-left: 8px;
+        }
+        .menu-bar span {
+            font-size: 18px;
+            color: #222;
+            margin-right: 18px;
+            font-family: Arial, sans-serif;
+            font-weight: 500;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            box-shadow: 1px 1px 2px #ccc;
+        }
+        .container {
+            width: 98vw;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 10px;
+        }
+        .table-box {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding: 0 0 18px 0;
+            margin: 0 auto 32px auto;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+        th, td {
+            border: 1px solid #bbb;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #223a57;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        .action-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 18px;
+            margin: 24px 0 0 0;
+        }
+        .action-btn {
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 48px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .btn-blue { background: #1da1f2; }
+        .btn-green { background: #27ae60; }
+        /* CSS cho breadcrumb */
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .breadcrumb-item {
+            color: #2196F3;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #888;
+        }
+        .breadcrumb-item:last-child {
+            color: #555;
+            font-weight: bold;
+        }
+        .breadcrumb-item:hover:not(:last-child) {
+            text-decoration: underline;
+        }
+        
+        /* CSS cho nút quay lại */
+        .back-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        .back-btn:before {
+            content: "←";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <span class="breadcrumb-item" onclick="goto('dieuhuong')">Trang chủ</span>
+            <span class="breadcrumb-item" onclick="goto('sv_dashboard')">Bảng điều khiển Sinh viên</span>
+            <span class="breadcrumb-item">Phiếu đánh giá</span>
+        </div>
+        
+        <button class="back-btn" onclick="goto('sv_dashboard')">Quay lại bảng điều khiển</button>
+        
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th style="width:40px;">STT</th>
+                    <th style="width:500px;">NỘI DUNG ĐÁNH GIÁ</th>
+                    <th style="width:100px;">Điểm tối đa</th>
+                    <th style="width:120px;">Điểm SV Đánh giá</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><b>ĐÁNH GIÁ VỀ Ý THỨC VÀ KẾT QUẢ HỌC TẬP CỦA SINH VIÊN</b></td>
+                    <td>20</td>
+                    
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Kết quả học tập:<br>- Xuất sắc<br>- Giỏi<br>- Khá<br>- Trung bình</td>
+                    <td>6<br>5<br>4<br>2</td>
+                    <td><input type="number" min="0" max="6" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Không có điểm thi, điểm học phần điểm là điểm F</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Không vi phạm quy chế thi, kiểm tra</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Tham dự đầy đủ các tiết học và học tập, sinh hoạt có vở hợp lệ</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Tham gia nghiên cứu khoa học và các cuộc thi về học thuật khác; Tham viên các lớp học về học tập</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Tham gia nghiên cứu khoa học đạt giải</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Xử lý vi phạm (kiểm tra)</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Vi phạm quy chế thi, kiểm tra</td>
+                    <td>5</td>
+                    <td><input type="number" min="0" max="5" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Nghỉ học liên tục dài ngày không lý do, bị cảnh báo học tập từ nhà trường</td>
+                    <td>5</td>
+                    <td><input type="number" min="0" max="5" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><b>ĐÁNH GIÁ VỀ Ý THỨC VÀ KẾT QUẢ CHẤP HÀNH NỘI QUY, QUY CHẾ TRONG NHÀ TRƯỜNG</b></td>
+                    <td>25</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Không vi phạm các nội quy, quy chế của nhà trường</td>
+                    <td>10</td>
+                    <td><input type="number" min="0" max="10" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Tham gia học, làm bài thu hoạch SHCD đầu năm và chấp hành tốt các nội dung chỉ thị nhà trường tổ chức</td>
+                    <td>5</td>
+                    <td><input type="number" min="0" max="5" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Tham gia đầy đủ các đợt tổng kiểm soát an ninh trật tự do nhà trường tổ chức</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Chấp hành quy định về vệ sinh bảo vệ, vệ sinh môi trường</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Đóng học phí, bảo hiểm y tế, bảo hiểm tai nạn đầy đủ, đúng hạn</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td><b>ĐÁNH GIÁ VỀ Ý THỨC VÀ KẾT QUẢ THAM GIA CÁC HOẠT ĐỘNG CHÍNH TRỊ, XÃ HỘI, PHONG TRÀO</b></td>
+                    <td>20</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Tham gia các hoạt động chính trị - xã hội được yêu cầu</td>
+                    <td>15</td>
+                    <td><input type="number" min="0" max="15" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Tham gia các hoạt động giáo dục kỹ năng, tư vấn hướng nghiệp</td>
+                    <td>5</td>
+                    <td><input type="number" min="0" max="5" style="width:60px;"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="action-row">
+            <button class="action-btn btn-blue">Lưu</button>
+            <button class="action-btn btn-green">Nộp</button>
+        </div>
+    </div>
+    <script>
+        // Lấy dữ liệu sinh viên hiện tại
+        const currentUser = getCurrentUser();
+        const studentId = currentUser ? currentUser.userId : '22522100'; // Mã mặc định nếu chưa đăng nhập
+        
+        // Kiểm tra xem đã có đánh giá nào từ trước chưa
+        const existingEval = getEvaluationData(studentId);
+        if (existingEval && existingEval.studentEval) {
+            // Điền dữ liệu đã có vào form
+            fillEvaluationForm(existingEval.studentEval);
+        }
+        
+        // Hàm điền dữ liệu vào form
+        function fillEvaluationForm(data) {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach((input, index) => {
+                if (data[index] !== undefined) {
+                    input.value = data[index];
+                }
+            });
+        }
+        
+        // Xử lý nút Lưu
+        document.querySelector('.action-btn.btn-blue').addEventListener('click', function() {
+            // Thu thập dữ liệu từ form
+            const inputs = document.querySelectorAll('input[type="number"]');
+            const evaluationData = [];
+            
+            inputs.forEach(input => {
+                evaluationData.push(input.value || 0);
+            });
+            
+            // Lưu đánh giá
+            if (saveStudentEvaluation(studentId, evaluationData)) {
+                showModal('Đã lưu đánh giá thành công!');
+            } else {
+                showModal('Có lỗi xảy ra khi lưu đánh giá.');
+            }
+        });
+        
+        // Xử lý nút Nộp
+        document.querySelector('.action-btn.btn-green').addEventListener('click', function() {
+            // Thu thập dữ liệu từ form
+            const inputs = document.querySelectorAll('input[type="number"]');
+            const evaluationData = [];
+            
+            inputs.forEach(input => {
+                evaluationData.push(input.value || 0);
+            });
+            
+            // Lưu đánh giá
+            if (saveStudentEvaluation(studentId, evaluationData)) {
+                showModal('Đã nộp đánh giá thành công! Ban cán sự sẽ xem xét đánh giá của bạn.');
+                // Chuyển về dashboard sau 2 giây
+                setTimeout(function() {
+                    loadPage('BangDIeuKhienSinhVien.html');
+                }, 2000);
+            } else {
+                showModal('Có lỗi xảy ra khi nộp đánh giá.');
+            }
+        });
+        
+        // Hàm hiển thị thông báo modal
+        function showModal(message) {
+            alert(message); // Tạm thời sử dụng alert, có thể tạo modal đẹp hơn sau
+        }
+    </script>
+</body>
+</html>

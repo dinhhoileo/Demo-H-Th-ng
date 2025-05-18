@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Phiếu Đánh Giá Điểm Rèn Luyện</title>
+  <script src="../js/app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+    }
+    .container {
+      width: 100vw;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100vw;
+      max-width: 100%;
+      table-layout: fixed;
+      font-size: 15px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #bbb;
+      padding: 6px 6px;
+      text-align: center;
+      word-break: break-word;
+    }
+    th {
+      background-color: #223a57;
+      color: #fff;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    td:nth-child(2) {
+      text-align: left;
+    }
+    tr:nth-child(even) {
+      background: #f5f5f5;
+    }
+    .group-row td {
+      background: #f2f2f2;
+      font-weight: bold;
+      text-align: left !important;
+      color: #223a57;
+      font-size: 15px;
+    }
+    .action-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      background: #f8f8f8;
+      padding: 18px 24px 18px 0;
+      border-top: 1px solid #ccc;
+    }
+    .action-btn {
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 38px;
+      cursor: pointer;
+      color: #fff;
+      min-width: 120px;
+    }
+    .btn-blue { background: #2196F3; }
+    .btn-green { background: #19b955; }
+    .back-btn {
+        background: #2196F3;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        width: fit-content;
+    }
+    .back-btn:before {
+        content: "←";
+        margin-right: 8px;
+    }
+    .breadcrumb {
+        display: flex;
+        margin-bottom: 15px;
+        background: #fff;
+        border-radius: 5px;
+        padding: 10px 15px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .breadcrumb-item {
+        color: #2196F3;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .breadcrumb-item:not(:last-child)::after {
+        content: ">";
+        margin: 0 10px;
+        color: #888;
+    }
+    .breadcrumb-item:last-child {
+        color: #555;
+        font-weight: bold;
+    }
+    .breadcrumb-item:hover:not(:last-child) {
+        text-decoration: underline;
+    }
+    a, button, .action-btn, td, tr {
+        transition: all 0.3s ease;
+    }
+    button:active, .action-btn:active {
+        transform: scale(0.98);
+    }
+    button:hover, .action-btn:hover, .back-btn:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="breadcrumb">
+        <span class="breadcrumb-item" onclick="goto('dieuhuong')">Trang chủ</span>
+        <span class="breadcrumb-item">Bảng điều khiển Sinh viên</span>
+    </div>
+    
+    <button class="back-btn" onclick="goto('sv_dashboard')">Quay lại bảng điều khiển</button>
+    
+    <table>
+      <tr>
+        <th style="width:40px;">STT</th>
+        <th style="width:500px;">NỘI DUNG ĐÁNH GIÁ</th>
+        <th style="width:100px;">Điểm tối đa</th>
+        <th style="width:120px;">Điểm SV Đánh giá</th>
+        <th style="width:120px;">Điểm lớp Đánh giá</th>
+      </tr>
+      <tr><td>16</td><td>Không vi phạm quy chế, quy định của nhà trường và các quy định khác</td><td>10</td><td>10</td><td>10</td></tr>
+      <tr><td>17</td><td>Tham gia học, làm bài thu hoạch SHCD đầy đủ và có hiệu quả</td><td>4</td><td>4</td><td>4</td></tr>
+      <tr><td>18</td><td>Không bị khiển trách trở lên</td><td>2</td><td>2</td><td>2</td></tr>
+      <tr><td>19</td><td>Tham gia đầy đủ các hoạt động sinh hoạt lớp và các cuộc họp</td><td>4</td><td>4</td><td>4</td></tr>
+      <tr><td>20</td><td>Chấp hành nghiêm túc nội quy, bảo vệ tài sản, vệ sinh trường, lớp</td><td>2</td><td>2</td><td>2</td></tr>
+      <tr><td>21</td><td>Đóng góp các loại phí, lệ phí, bảo hiểm đầy đủ và kịp thời, kê khai đầy đủ</td><td>4</td><td>4</td><td>4</td></tr>
+      <tr class="group-row"><td colspan="5">ĐÁNH GIÁ Ý THỨC VÀ KẾT QUẢ THAM GIA CÁC HOẠT ĐỘNG CHÍNH TRỊ, XÃ HỘI, PHONG TRÀO, NGOẠI KHÓA</td></tr>
+      <tr><td>22</td><td>Tham gia đầy đủ các hoạt động do lớp, khoa tổ chức</td><td>4</td><td>4</td><td>4</td></tr>
+      <tr><td>23</td><td>Tham gia đầy đủ các hoạt động cấp trường</td><td>3</td><td>3</td><td>3</td></tr>
+      <tr><td>24</td><td>Tham gia các hoạt động tình nguyện, văn nghệ, thể dục thể thao</td><td>3</td><td>3</td><td>3</td></tr>
+      <tr class="group-row"><td colspan="5">ĐÁNH GIÁ PHẨM CHẤT CÔNG DÂN VÀ QUAN HỆ CỘNG ĐỒNG</td></tr>
+      <tr><td>25</td><td>Tham gia tốt các hoạt động vì cộng đồng, tình nguyện, hiến máu</td><td>7</td><td>7</td><td>7</td></tr>
+      <tr><td>26</td><td>Có tinh thần đoàn kết, giúp đỡ bạn bè</td><td>5</td><td>5</td><td>5</td></tr>
+      <tr><td>27</td><td>Không có thái độ gây mất đoàn kết, thiếu văn hóa, nói xấu người khác</td><td>5</td><td>5</td><td>5</td></tr>
+      <tr class="group-row"><td colspan="5">ĐÁNH GIÁ Ý THỨC VÀ KẾT QUẢ PHỤ TRÁCH LỚP, TỔ CHỨC, ĐOÀN THỂ</td></tr>
+      <tr><td>28</td><td>Có tinh thần trách nhiệm trong công việc được phân công, hoàn thành tốt</td><td>7</td><td>7</td><td>7</td></tr>
+      <tr><td>29</td><td>Hoàn thành nhiệm vụ Ban cán sự lớp, BCH chi đoàn, chi hội</td><td>3</td><td>3</td><td>3</td></tr>
+      <tr class="group-row"><td colspan="5">ĐÁNH GIÁ KHÁC</td></tr>
+      <tr><td>30</td><td>Được khen thưởng, có giấy khen trong học kỳ</td><td>5</td><td></td><td></td></tr>
+      <tr><td>31</td><td>Tham gia hiến máu, các hoạt động tình nguyện đột xuất khác</td><td>5</td><td></td><td></td></tr>
+      <tr><td>32</td><td>Tham gia đóng góp các quỹ từ thiện, vì người nghèo,...</td><td>5</td><td></td><td></td></tr>
+      <tr><td>33</td><td>Tham gia các hoạt động nghiên cứu khoa học, viết bài cho báo</td><td>5</td><td></td><td></td></tr>
+      <tr><td>34</td><td>Tham gia các cuộc thi do khoa, trường tổ chức đạt giải cao</td><td>5</td><td></td><td></td></tr>
+      <tr><td>35</td><td>Đóng góp tích cực trong các hoạt động đoàn thể, phong trào</td><td>5</td><td></td><td></td></tr>
+      <tr><td>36</td><td>Được giới thiệu kết nạp Đảng Cộng sản Việt Nam</td><td>5</td><td></td><td></td></tr>
+      <tr><td>37</td><td>Không thực hiện nghĩa vụ đóng BHYT, BHXH, các loại phí, quỹ theo quy định</td><td>-5</td><td></td><td></td></tr>
+      <tr><td>38</td><td>Điểm thưởng</td><td>5</td><td></td><td></td></tr>
+      <tr><td>39</td><td><strong>Tổng cộng</strong></td><td><strong>100</strong></td><td></td><td></td></tr>
+    </table>
+    <div class="action-row">
+      <button class="action-btn btn-blue" id="btn-feedback">Phản Hồi</button>
+      <button class="action-btn btn-green">Nộp</button>
+    </div>
+  </div>
+  <script>
+    document.querySelector('.quick-btn.btn-green').onclick = function() {
+        goto('phieudrl_sv');
+    };
+
+    // Lấy thông tin sinh viên được đánh giá từ localStorage
+    let selectedStudent = JSON.parse(localStorage.getItem('selectedStudent')) || {};
+    let studentId = selectedStudent.mssv || '22522100'; // Mã mặc định nếu không có
+    
+    // Kiểm tra xem đã có đánh giá nào từ trước chưa
+    const existingEval = getEvaluationData(studentId);
+    
+    if (existingEval) {
+        // Hiển thị dữ liệu đánh giá sinh viên và BCS
+        if (existingEval.studentEval && existingEval.bcsEval) {
+            showEvaluationData(existingEval.studentEval, existingEval.bcsEval);
+        } else {
+            showModal('Sinh viên hoặc Ban cán sự chưa hoàn thành đánh giá.');
+        }
+    } else {
+        showModal('Không tìm thấy dữ liệu đánh giá của sinh viên này.');
+    }
+    
+    // Hàm hiển thị dữ liệu đánh giá
+    function showEvaluationData(studentEval, bcsEval) {
+        const rows = document.querySelectorAll('table tr');
+        
+        // Bắt đầu từ hàng thứ 2 (bỏ qua header)
+        for (let i = 1; i < rows.length; i++) {
+            if (i <= studentEval.length && i <= bcsEval.length) {
+                // Thêm cột điểm SV đánh giá
+                let svCell = rows[i].cells[3];
+                if (svCell) svCell.textContent = studentEval[i-1] || '';
+                
+                // Thêm cột điểm BCS đánh giá
+                let bcsCell = rows[i].cells[4];
+                if (bcsCell) bcsCell.textContent = bcsEval[i-1] || '';
+            }
+        }
+    }
+    
+    // Xử lý nút Phản hồi
+    document.getElementById('btn-feedback').addEventListener('click', function() {
+        showModal('Đã gửi phản hồi cho Ban cán sự lớp!');
+    });
+    
+    // Xử lý nút Nộp
+    document.querySelector('.action-btn.btn-green').addEventListener('click', function() {
+        showModal('Đã phê duyệt đánh giá thành công!');
+        // Chuyển về dashboard sau 2 giây
+        setTimeout(function() {
+            loadPage('BangDieuKhienCVHT.html');
+        }, 2000);
+    });
+    
+    // Hàm hiển thị thông báo modal
+    function showModal(message) {
+        alert(message); // Tạm thời sử dụng alert, có thể tạo modal đẹp hơn sau
+    }
+  </script>
+</body>
+</html>

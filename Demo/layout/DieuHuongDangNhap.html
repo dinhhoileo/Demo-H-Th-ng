@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>CỔNG THÔNG TIN - Đăng Nhập</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f0f0;
+            background-image: radial-gradient(#ddd 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            background: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 60px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Main container */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Flex container for form */
+        .login-form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Label styling */
+        .label {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-right: 20px;
+            white-space: nowrap;
+        }
+        
+        /* Select box styling */
+        .select-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px 20px;
+            font-size: 24px;
+            min-width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        /* Button styling */
+        .btn {
+            display: block;
+            width: 100%;
+            background: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 18px 0;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .login-form {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .label {
+                margin-bottom: 15px;
+                font-size: 28px;
+            }
+            
+            .select-box {
+                width: 100%;
+                font-size: 20px;
+            }
+            
+            .btn {
+                font-size: 24px;
+                padding: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">CỔNG THÔNG TIN</div>
+    
+    <div class="container">
+        <form>
+            <div class="login-form">
+                <span class="label">Bạn Đăng Nhập Với Tư Cách</span>
+                <select class="select-box" name="role">
+                    <option>Sinh Viên</option>
+                    <option>Ban Cán Sự Lớp</option>
+                    <option>Cố Vấn Học Tập</option>
+                    <option>Phòng Công Tác Sinh Viên</option>
+                </select>
+            </div>
+            <button class="btn" type="button" onclick="handleRoleSelection()">Tiếp Tục</button>
+        </form>
+    </div>
+
+    <script>
+        function handleRoleSelection() {
+            const roleSelect = document.querySelector('.select-box');
+            const selectedRole = roleSelect.value;
+            
+            // Điều hướng dựa trên vai trò được chọn
+            switch (selectedRole) {
+                case 'Sinh Viên':
+                    loadPage('DangNhapSinhVien.html');
+                    break;
+                case 'Ban Cán Sự Lớp':
+                    loadPage('DangNhapBanCanSu.html');
+                    break;
+                case 'Cố Vấn Học Tập':
+                    loadPage('DangNhapCoVanHocTap.html');
+                    break;
+                case 'Phòng Công Tác Sinh Viên':
+                    loadPage('DangNhapCongTacSinhVien.html');
+                    break;
+                default:
+                    loadPage('DangNhapSinhVien.html');
+            }
+        }
+    </script>
+</body>
+</html>

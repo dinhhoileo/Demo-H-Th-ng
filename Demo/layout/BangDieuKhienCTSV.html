@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảng Điều Khiển Quản Lý Điểm Rèn Luyện</title>
+    <meta name="viewport" content="width=900, initial-scale=1.0">
+    <script src="../js/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        .window-bar {
+            background: #ededed;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            border-bottom: 1px solid #ccc;
+        }
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+            display: inline-block;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        .window-title {
+            margin-left: 12px;
+            color: #444;
+            font-size: 15px;
+            font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .container {
+            width: 900px;
+            margin: 0 auto;
+            padding-top: 10px;
+        }
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin: 32px 0 24px 0;
+            background: #fff;
+            border-radius: 8px;
+            padding: 18px 0;
+            border: 1px solid #eee;
+            letter-spacing: 1px;
+        }
+        .header .icon {
+            font-size: 24px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .table-box {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding: 18px 18px 0 18px;
+            margin: 0 auto 32px auto;
+            width: 520px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+        }
+        th, td {
+            border: 1px solid #bbb;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        th {
+            background: #223a57;
+            color: #fff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        .update-btn {
+            display: block;
+            margin: 32px auto 0 auto;
+            font-size: 20px;
+            font-weight: bold;
+            border: 1.5px solid #bbb;
+            border-radius: 6px;
+            padding: 14px 48px;
+            background: #fff;
+            cursor: pointer;
+        }
+        .bottom-section {
+            display: flex;
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .box {
+            flex: 1;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding: 18px 18px 18px 18px;
+        }
+        .box-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .input-row input, .input-row select {
+            font-size: 16px;
+            padding: 8px 10px;
+            border: 1.5px solid #bbb;
+            border-radius: 4px;
+            flex: 1;
+        }
+        .input-row button {
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .btn-blue { background: #1da1f2; }
+        .btn-green { background: #27ae60; }
+        .btn-list { background: #34495e; }
+        .btn-save { background: #00b894; }
+        /* CSS cho breadcrumb */
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .breadcrumb-item {
+            color: #2196F3;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #888;
+        }
+        .breadcrumb-item:last-child {
+            color: #555;
+            font-weight: bold;
+        }
+        .breadcrumb-item:hover:not(:last-child) {
+            text-decoration: underline;
+        }
+        
+        /* CSS cho header chung */
+        .page-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .page-header .role-info {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .page-header .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .page-header .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Hiệu ứng cho các phần tử tương tác */
+        a, button, .action-btn, td, tr {
+            transition: all 0.3s ease;
+        }
+        button:active, .action-btn:active {
+            transform: scale(0.98);
+        }
+        button:hover, .action-btn:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div id="app-header-placeholder"></div>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <span class="breadcrumb-item" onclick="goto('dieuhuong')">Trang chủ</span>
+            <span class="breadcrumb-item">Bảng điều khiển CTSV</span>
+        </div>
+        <div class="header">
+            <span class="icon">📊</span>
+            BẢNG ĐIỀU KHIỂN QUẢN LÝ ĐIỂM RÈN LUYỆN
+        </div>
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên lớp</th>
+                    <th>Số lượng SV</th>
+                    <th>Tình trạng</th>
+                </tr>
+                <tr>
+                    <td>1</td><td>D21CT2</td><td>60</td><td>Chấm Đủ</td>
+                </tr>
+                <tr>
+                    <td>2</td><td>Đ22HT1</td><td>55</td><td>Chấm Đủ</td>
+                </tr>
+                <tr>
+                    <td>3</td><td>IT01</td><td>43</td><td>Chưa Đủ</td>
+                </tr>
+                <tr>
+                    <td>4</td><td>D23HT2</td><td>53</td><td>Chấm Đủ</td>
+                </tr>
+                <tr>
+                    <td>5</td><td>Đ22KT1</td><td>87</td><td>Chấm Đủ</td>
+                </tr>
+                <tr>
+                    <td>6</td><td>D21LK2</td><td>43</td><td>Chấm Đủ</td>
+                </tr>
+            </table>
+        </div>
+        <button class="update-btn">Cập nhật trên hệ thống</button>
+        <div class="bottom-section">
+            <div class="box">
+                <div class="box-title">Thông báo chấm điểm rèn luyện</div>
+                <div class="input-row">
+                    <input type="text" value="Chấm Điểm Rèn Luyện Học Kì 2">
+                    <button class="btn-blue">Gửi đi</button>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-title">Nhận kết quả từ cố vấn học tập</div>
+                <div class="input-row">
+                    <select>
+                        <option>Nguyễn Văn Tèo - Đ22HT1</option>
+                        <option>Trần Thị Bình - Đ22HT1</option>
+                        <option>Phạm Minh Nam - IT01</option>
+                    </select>
+                    <button class="btn-list">Xem danh sách lớp</button>
+                </div>
+                <div class="input-row">
+                    <button class="btn-green">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

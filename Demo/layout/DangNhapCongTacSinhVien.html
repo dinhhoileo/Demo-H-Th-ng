@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>CỔNG THÔNG TIN - Đăng Nhập Phòng Công Tác Sinh Viên</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        /* Header với nền xanh giàn trải */
+        .header {
+            background: #16a2da;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 56px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Container chính */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Breadcrumb container */
+        .breadcrumb-container {
+            background: #f2f2f2;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        /* Breadcrumb styles */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 5px 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb-item {
+            color: #2196F3;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .breadcrumb-item:not(:last-child) {
+            padding-right: 28px;
+            position: relative;
+        }
+        
+        .breadcrumb-item:not(:last-child)::after {
+            content: ">";
+            position: absolute;
+            right: 10px;
+            color: #888;
+        }
+        
+        .breadcrumb-item:last-child {
+            color: #555;
+            font-weight: bold;
+        }
+        
+        .breadcrumb-item:hover:not(:last-child) {
+            text-decoration: underline;
+        }
+        
+        /* Form container */
+        .form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+        
+        .form-label {
+            width: 180px;
+            font-size: 18px;
+            color: #333;
+            font-weight: normal;
+            text-align: right;
+            margin-right: 20px;
+        }
+        
+        .form-input {
+            flex: 1;
+            height: 40px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0 12px;
+        }
+        
+        /* Options row */
+        .form-options {
+            display: flex;
+            align-items: center;
+            margin-left: 200px;
+            margin-bottom: 30px;
+        }
+        
+        .remember-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-option input {
+            margin-right: 5px;
+        }
+        
+        .remember-option label {
+            font-size: 15px;
+            margin-right: 40px;
+        }
+        
+        .forgot-link {
+            font-size: 15px;
+            color: #2196F3;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 30px;
+            font-weight: bold;
+        }
+        
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Login button */
+        .login-btn {
+            display: block;
+            width: 100%;
+            background: #16a2da;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background: #1286b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">CỔNG THÔNG TIN</div>
+    
+    <div class="breadcrumb-container">
+        <div class="breadcrumb">
+            <span class="breadcrumb-item" onclick="loadPage('DieuHuongDangNhap.html')">Trang chủ</span>
+            <span class="breadcrumb-item">Đăng nhập Phòng Công Tác Sinh Viên</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="form-container">
+            <form>
+                <div class="form-row">
+                    <div class="form-label">Mã Phòng CTSV</div>
+                    <input class="form-input" type="text" placeholder="">
+                </div>
+                <div class="form-row">
+                    <div class="form-label">Mật Khẩu</div>
+                    <input class="form-input" type="password" placeholder="">
+                </div>
+                <div class="form-options">
+                    <input type="radio" id="remember" name="remember">
+                    <label for="remember">ghi nhớ mật khẩu</label>
+                    <span class="forgot-link" onclick="loadPage('LayLaiMatKhau.html')">Bạn quên mật khẩu?</span>
+                </div>
+                <button class="login-btn" type="button" onclick="loadPage('BangDieuKhienCTSV.html')">Đăng Nhập</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

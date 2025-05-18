@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đánh giá Điểm Rèn Luyện (Dành cho BCS Lớp)</title>
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <script src="../js/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+        .container {
+            width: 98vw;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 18px;
+        }
+        .info-box {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding: 18px 24px 10px 24px;
+            margin-bottom: 18px;
+        }
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .info-label {
+            font-weight: bold;
+            font-size: 16px;
+            min-width: 120px;
+        }
+        .info-value {
+            font-size: 16px;
+            min-width: 120px;
+        }
+        .info-select, .info-input {
+            font-size: 16px;
+            padding: 4px 10px;
+            border: 1.5px solid #bbb;
+            border-radius: 4px;
+            min-width: 120px;
+        }
+        .table-box {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid #bbb;
+            padding: 0 0 18px 0;
+            margin: 0 auto 32px auto;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+        th, td {
+            border: 1px solid #bbb;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #223a57;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        .action-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 16px;
+            background: #f8f8f8;
+            padding: 18px 24px 18px 0;
+            border-top: 1px solid #ccc;
+            margin-top: 15px;
+        }
+        .action-btn {
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 38px;
+            cursor: pointer;
+            color: #fff;
+            min-width: 120px;
+        }
+        .btn-blue { background: #2196F3; }
+        .btn-green { background: #19b955; }
+        .btn-gray { background: #7f8c8d; }
+        .feedback-row {
+            display: flex;
+            gap: 10px;
+            margin: 18px 0 0 0;
+        }
+        .feedback-input {
+            flex: 1;
+            font-size: 16px;
+            padding: 10px;
+            border: 1.5px solid #f39c12;
+            border-radius: 4px;
+            background: #fffbe6;
+        }
+        /* CSS cho breadcrumb */
+        .breadcrumb {
+            display: flex;
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 5px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .breadcrumb-item {
+            color: #2196F3;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #888;
+        }
+        .breadcrumb-item:last-child {
+            color: #555;
+            font-weight: bold;
+        }
+        .breadcrumb-item:hover:not(:last-child) {
+            text-decoration: underline;
+        }
+        
+        /* CSS cho nút quay lại */
+        .back-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        .back-btn:before {
+            content: "←";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <span class="breadcrumb-item" onclick="goto('dieuhuong')">Trang chủ</span>
+            <span class="breadcrumb-item" onclick="goto('bcs_dashboard')">Bảng điều khiển BCS</span>
+            <span class="breadcrumb-item">Phiếu đánh giá</span>
+        </div>
+        
+        <button class="back-btn" onclick="goto('bcs_dashboard')">Quay lại bảng điều khiển</button>
+        
+        <div class="info-box">
+            <div class="info-row">
+                <span class="info-label">Họ và Tên:Nguyễn Thị Bé</span>
+                <span class="info-value" id="student-name"></span>
+                <span class="info-label">Mã Số SV:22522100</span>
+                <span class="info-value" id="student-mssv"></span>
+                <span class="info-label">Lớp:Đ22HT1</span>
+                <span class="info-value" id="student-lop"></span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Năm học:</span>
+                <select class="info-select">
+                    <option>2023-2024</option>
+                    <option>2022-2023</option>
+                </select>
+                <span class="info-label">Học kỳ:</span>
+                <select class="info-select">
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+                <span class="info-label">Ngày đánh giá (Lớp):</span>
+                <input class="info-input" type="date" value="2000-10-01">
+            </div>
+        </div>
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th style="width:40px;">STT</th>
+                    <th style="width:500px;">NỘI DUNG ĐÁNH GIÁ</th>
+                    <th style="width:100px;">Điểm Tối Đa</th>
+                    <th style="width:120px;">Điểm Sinh Viên Đánh Giá</th>
+                    <th style="width:120px;">Điểm Ban Cán Sự Đánh Giá</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><b>ĐÁNH GIÁ VỀ Ý THỨC VÀ KẾT QUẢ HỌC TẬP CỦA SINH VIÊN</b></td>
+                    <td>20</td>
+                        <td></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Kết quả học tập:<br>- Xuất sắc<br>- Giỏi<br>- Khá<br>- Trung bình</td>
+                    <td>6<br>5<br>4<br>2</td>
+                    <td><input type="number" min="0" max="6" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="6" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Không có điểm thi, điểm học phần điểm là điểm F</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Không vi phạm quy chế thi, kiểm tra</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Tham dự đầy đủ các tiết học và học tập, sinh hoạt có vở hợp lệ</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Tham gia nghiên cứu khoa học và các cuộc thi về học thuật khác; Tham viên các lớp học về học tập</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Tham gia nghiên cứu khoa học đạt giải</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Xử lý vi phạm (kiểm tra)</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Vi phạm quy chế thi, kiểm tra</td>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Nghỉ học liên tục dài ngày không lý do, bị cảnh báo học tập từ nhà trường</td>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><b>ĐÁNH GIÁ VỀ Ý THỨC VÀ KẾT QUẢ CHẤP HÀNH NỘI QUY, QUY CHẾ TRONG NHÀ TRƯỜNG</b></td>
+                    <td>25</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Không vi phạm các nội quy, quy chế của nhà trường</td>
+                    <td>10</td>
+                    <td><input type="number" min="0" max="10" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="10" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Tham gia học, làm bài thu hoạch SHCD đầu năm và chấp hành tốt các nội dung chỉ thị nhà trường tổ chức</td>
+                    <td>5</td>
+                    <td><input type="number" min="0" max="5" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="5" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Tham gia đầy đủ các đợt tổng kiểm soát an ninh trật tự do nhà trường tổ chức</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Chấp hành quy định về vệ sinh bảo vệ, vệ sinh môi trường</td>
+                    <td>2</td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="2" style="width:60px;"></td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Đóng học phí, bảo hiểm y tế, bảo hiểm tai nạn đầy đủ, đúng hạn</td>
+                    <td>4</td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                    <td><input type="number" min="0" max="4" style="width:60px;"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="action-row">
+            <button class="action-btn btn-blue" id="btn-feedback">Phản Hồi</button>
+            <button class="action-btn btn-green">Nộp</button>
+        </div>
+    </div>
+    <div id="feedback-popup" style="display:none; position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:8px; padding:24px 32px; min-width:320px; box-shadow:0 2px 16px #0002; text-align:center;">
+            <div style="font-size:18px; margin-bottom:10px;">Nhập phản hồi</div>
+            <input type="text" style="width:95%; padding:8px; margin-bottom:10px; border:1px solid #ccc; border-radius:4px;">
+            <button id="feedback-ok" style="font-size:16px; background:#2196F3; color:#fff; border:none; border-radius:5px; padding:8px 24px;">OK</button>
+        </div>
+    </div>
+    <script>
+        // Lấy thông tin sinh viên được đánh giá từ localStorage
+        let selectedStudent = JSON.parse(localStorage.getItem('selectedStudent')) || {};
+        let studentId = selectedStudent.mssv || '22522100'; // Mã mặc định nếu không có
+        
+        // Cập nhật thông tin sinh viên trên trang
+        document.getElementById('student-name').textContent = selectedStudent.name || 'Nguyễn Văn A';
+        document.getElementById('student-mssv').textContent = studentId;
+        document.getElementById('student-lop').textContent = selectedStudent.lop || 'Đ22HT1';
+        
+        // Kiểm tra xem đã có đánh giá nào từ trước chưa
+        const existingEval = getEvaluationData(studentId);
+        
+        if (existingEval) {
+            // Điền dữ liệu đánh giá sinh viên vào cột sinh viên
+            if (existingEval.studentEval) {
+                fillStudentEvaluation(existingEval.studentEval);
+            }
+            
+            // Điền dữ liệu đánh giá BCS vào cột BCS nếu có
+            if (existingEval.bcsEval) {
+                fillBCSEvaluation(existingEval.bcsEval);
+            }
+        } else {
+            showModal('Không tìm thấy dữ liệu đánh giá của sinh viên này.');
+        }
+        
+        // Hàm điền dữ liệu sinh viên đánh giá
+        function fillStudentEvaluation(data) {
+            const studentInputs = document.querySelectorAll('td:nth-child(4) input[type="number"]');
+            studentInputs.forEach((input, index) => {
+                if (data[index] !== undefined) {
+                    input.value = data[index];
+                }
+            });
+        }
+        
+        // Hàm điền dữ liệu BCS đánh giá
+        function fillBCSEvaluation(data) {
+            const bcsInputs = document.querySelectorAll('td:nth-child(5) input[type="number"]');
+            bcsInputs.forEach((input, index) => {
+                if (data[index] !== undefined) {
+                    input.value = data[index];
+                }
+            });
+        }
+        
+        // Xử lý nút Phản hồi
+        document.getElementById('btn-feedback').addEventListener('click', function() {
+            // Hiển thị popup phản hồi
+            document.getElementById('feedback-popup').style.display = 'flex';
+        });
+        
+        // Xử lý nút OK trong popup phản hồi
+        document.getElementById('feedback-ok').addEventListener('click', function() {
+            document.getElementById('feedback-popup').style.display = 'none';
+            showModal('Đã gửi phản hồi thành công!');
+        });
+        
+        // Xử lý nút Nộp
+        document.querySelector('.action-btn.btn-green').addEventListener('click', function() {
+            // Thu thập dữ liệu từ form
+            const bcsInputs = document.querySelectorAll('td:nth-child(5) input[type="number"]');
+            const evaluationData = [];
+            
+            bcsInputs.forEach(input => {
+                evaluationData.push(input.value || 0);
+            });
+            
+            // Lưu đánh giá
+            if (saveBCSEvaluation(studentId, evaluationData)) {
+                showModal('Đã lưu đánh giá BCS thành công! Đánh giá đã được chuyển đến Cố vấn học tập.');
+                // Chuyển về dashboard sau 2 giây
+                setTimeout(function() {
+                    loadPage('BangDieuKhienBCS.html');
+                }, 2000);
+            } else {
+                showModal('Có lỗi xảy ra khi lưu đánh giá.');
+            }
+        });
+        
+        // Hàm hiển thị thông báo modal
+        function showModal(message) {
+            alert(message); // Tạm thời sử dụng alert, có thể tạo modal đẹp hơn sau
+        }
+    </script>
+</body>
+</html>
